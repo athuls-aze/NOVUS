@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: novus-backend
+  profiles:
+    active: local
+
+server:
+  port: 8080
+
+jwt:
+  secret: ${JWT_SECRET:your_super_secret_key_here_must_be_long_enough_for_hs256_which_is_at_least_256_bits_length}
+  expiration: 86400000

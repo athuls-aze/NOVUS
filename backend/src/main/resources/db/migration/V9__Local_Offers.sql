@@ -1,0 +1,14 @@
+-- V9__Local_Offers.sql
+CREATE TABLE offers (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    variant_id BIGINT NOT NULL,
+    shop_name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    distance DECIMAL(5,2) NOT NULL,
+    verification_method VARCHAR(100) NOT NULL,
+    payment_method VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT fk_offers_variant FOREIGN KEY (variant_id) REFERENCES variants(id) ON DELETE CASCADE
+);

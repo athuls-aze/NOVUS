@@ -1,0 +1,21 @@
+# NOVUS Implementation Roadmap
+
+- [x] **PHASE 0**: Architecture and planning
+- [x] **PHASE 1**: Project foundation (Init Spring Boot & React)
+- [x] **PHASE 2**: Database foundation (Flyway config, base entities)
+- [x] **PHASE 3**: Smartphone catalog and user-device registration
+- [x] **PHASE 4**: Authentication and user management
+- [x] **PHASE 5**: Warranty tracking module
+- [x] **PHASE 6**: Condition assessment module
+- [x] **PHASE 7**: Market data and OOP provider architecture
+- [x] **PHASE 8**: Valuation engine
+- [x] **PHASE 9**: REST API integration
+- [x] **PHASE 10**: Dashboard and device-management UI
+- [x] **PHASE 11**: Smart Assistant (Internal Java implementation)
+- [x] **PHASE 12**: Local offers (Demo data integration)
+- [x] **PHASE 13**: Sell-device workflow (State machine)
+- [x] **PHASE 14**: Premium UI refinement
+- [x] **PHASE 15**: Testing and bug fixing
+- [x] **PHASE 16**: Security hardening
+- [x] **PHASE 17**: Deployment preparation
+- [x] **PHASE 18**: Final documentation and viva preparation
