@@ -34,9 +34,9 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-xl mt-10">
-      <h2 className="text-3xl font-bold mb-2 text-center text-white">Welcome Back</h2>
-      <p className="text-gray-400 text-center mb-6 text-sm">Sign in to manage your devices and valuations</p>
+    <div className="max-w-md mx-auto bg-apple-surface shadow-apple-card border border-apple-border p-8 rounded-xl mt-10">
+      <h2 className="text-3xl font-bold mb-2 text-center text-apple-primary">Welcome Back</h2>
+      <p className="text-apple-secondary text-center mb-6 text-sm">Sign in to manage your devices and valuations</p>
 
       {error && (
         <div className="bg-red-500/20 border border-red-500/40 text-red-300 px-4 py-3 rounded-lg text-sm mb-4">
@@ -46,46 +46,43 @@ export default function Login() {
 
       <form onSubmit={handleLogin} className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1 font-medium">Email Address</label>
+          <label className="block text-sm text-apple-secondary mb-1 font-medium">Email Address</label>
           <input 
             type="email" 
             value={email} 
             onChange={e => setEmail(e.target.value)} 
             required
-            placeholder="test@example.com"
-            className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" 
+            className="w-full bg-apple-bg border border-apple-border rounded-lg p-3 text-apple-primary focus:outline-none focus:border-indigo-500 transition-colors" 
           />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1 font-medium">Password</label>
+          <label className="block text-sm text-apple-secondary mb-1 font-medium">Password</label>
           <input 
             type="password" 
             value={password} 
             onChange={e => setPassword(e.target.value)} 
             required
             placeholder="••••••••"
-            className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" 
+            className="w-full bg-apple-bg border border-apple-border rounded-lg p-3 text-apple-primary focus:outline-none focus:border-indigo-500 transition-colors" 
           />
         </div>
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold py-3 rounded-lg transition-colors shadow-md flex items-center justify-center gap-2"
+          className="w-full bg-apple-blue hover:opacity-90 disabled:opacity-50 text-white font-bold py-3 rounded-lg transition-colors shadow-md flex items-center justify-center gap-2"
         >
           {loading ? 'Authenticating...' : 'Sign In'}
         </button>
       </form>
 
-      <div className="mt-6 text-center text-sm text-gray-400 border-t border-gray-700/60 pt-4">
+      <div className="mt-6 text-center text-sm text-apple-secondary border-t border-apple-border/60 pt-4">
         Don't have an account?{' '}
         <Link to="/register" className="text-indigo-400 hover:text-indigo-300 font-semibold transition">
           Create Account
         </Link>
       </div>
 
-      <div className="mt-3 p-3 bg-gray-900/60 rounded-lg border border-gray-700 text-xs text-gray-400 text-center">
-        Demo Login: <span className="text-gray-200">test@example.com</span> / <span className="text-gray-200">password123</span>
-      </div>
     </div>
   );
 }
+

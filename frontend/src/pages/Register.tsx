@@ -33,12 +33,12 @@ export default function Register() {
     }
   };
 
-  const inputClass = "w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors";
+  const inputClass = "w-full bg-apple-bg border border-apple-border rounded-lg p-3 text-apple-primary focus:outline-none focus:border-indigo-500 transition-colors";
 
   return (
-    <div className="max-w-md mx-auto bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-xl mt-10">
+    <div className="max-w-md mx-auto bg-apple-surface shadow-apple-card border border-apple-border p-8 rounded-xl mt-10">
       <h2 className="text-3xl font-bold mb-2 text-center">Create Account</h2>
-      <p className="text-gray-400 text-center mb-6 text-sm">Join NOVUS to track your devices</p>
+      <p className="text-apple-secondary text-center mb-6 text-sm">Join NOVUS to track your devices</p>
 
       {error && (
         <div className="bg-red-900/50 border border-red-700 text-red-300 rounded-lg px-4 py-3 mb-4 text-sm">{error}</div>
@@ -46,17 +46,17 @@ export default function Register() {
 
       <form onSubmit={handleRegister} className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Email</label>
+          <label className="block text-sm text-apple-secondary mb-1">Email</label>
           <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
             className={inputClass} placeholder="you@example.com" />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1">Password</label>
+          <label className="block text-sm text-apple-secondary mb-1">Password</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} required
             className={inputClass} placeholder="Min. 8 characters" />
         </div>
         <button type="submit" disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold py-3 rounded-lg transition-colors">
+          className="w-full bg-apple-blue hover:opacity-90 disabled:opacity-50 text-white font-bold py-3 rounded-lg transition-colors">
           {loading ? 'Creating account...' : 'Register'}
         </button>
       </form>
@@ -68,3 +68,4 @@ export default function Register() {
     </div>
   );
 }
+

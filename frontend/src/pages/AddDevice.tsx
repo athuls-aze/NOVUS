@@ -87,17 +87,17 @@ export default function AddDevice() {
     }
   };
 
-  const selectClass = "w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-40";
-  const labelClass  = "block text-sm font-medium text-gray-300 mb-1";
+  const selectClass = "w-full bg-apple-surface border border-apple-border rounded-lg px-4 py-2 text-apple-primary focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-40";
+  const labelClass  = "block text-sm font-medium text-apple-secondary mb-1";
 
   return (
     <div className="max-w-xl mx-auto">
       <h2 className="text-3xl font-bold mb-2">Register New Device</h2>
-      <p className="text-gray-400 mb-6">Select your phone step by step.</p>
+      <p className="text-apple-secondary mb-6">Select your phone step by step.</p>
 
       {error && <div className="bg-red-900/50 border border-red-700 text-red-300 rounded-lg px-4 py-3 mb-4">{error}</div>}
 
-      <form onSubmit={handleSubmit} className="bg-gray-800 rounded-xl border border-gray-700 p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-apple-surface shadow-apple-card border border-apple-border rounded-xl p-6 space-y-4">
 
         {/* Brand */}
         <div>
@@ -131,7 +131,7 @@ export default function AddDevice() {
           <label className={labelClass}>Variant</label>
           <select className={selectClass} value={variantId} onChange={e => setVariantId(e.target.value)} disabled={!modelId}>
             <option value="">-- Select Variant --</option>
-            {variants.map(v => <option key={v.id} value={v.id}>{v.storage} / {v.ram} / {v.color} — &#x20B9;{v.basePrice}</option>)}
+            {variants.map(v => <option key={v.id} value={v.id}>{v.storage} / {v.ram} / {v.color}</option>)}
           </select>
         </div>
 
@@ -162,11 +162,11 @@ export default function AddDevice() {
 
         <div className="flex gap-3 pt-2">
           <button type="button" onClick={() => navigate('/')}
-            className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 rounded-lg transition">
+            className="flex-1 bg-apple-surface hover:bg-apple-border text-apple-primary font-semibold py-2 rounded-lg transition">
             Cancel
           </button>
           <button type="submit" disabled={loading || !variantId}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold py-2 rounded-lg transition">
+            className="flex-1 bg-apple-blue hover:opacity-90 disabled:opacity-50 text-white font-semibold py-2 rounded-lg transition">
             {loading ? 'Registering...' : 'Register Device'}
           </button>
         </div>
@@ -174,3 +174,5 @@ export default function AddDevice() {
     </div>
   );
 }
+
+

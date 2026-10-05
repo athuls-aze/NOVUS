@@ -26,6 +26,7 @@ public class SmartAssistantController {
             @PathVariable Long deviceId,
             @RequestBody SmartAssistantRequestDTO request,
             Principal principal) {
-        return smartAssistantService.processQuery(deviceId, principal.getName(), request);
+        return smartAssistantService.generateResponse(deviceId, principal.getName(), request);
     }
 }
+

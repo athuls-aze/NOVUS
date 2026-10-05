@@ -35,3 +35,4 @@ All phases completed successfully as per instructions.
 ### Seeded Credentials for Testing
 - **Email:** `test@example.com`
 - **Password:** `password123`
+- Git & GitHub Preparation: Configured comprehensive .gitignore files (root, frontend, backend), abstracted environment secrets into .env.example, and initialized local Git repository. Project is now safe and ready to be pushed to a public repository.

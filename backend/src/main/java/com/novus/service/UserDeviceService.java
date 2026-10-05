@@ -11,11 +11,10 @@ import com.novus.repository.UserRepository;
 import com.novus.repository.VariantRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional
@@ -33,9 +32,9 @@ public class UserDeviceService {
 
     public UserDeviceResponseDTO registerDevice(UserDeviceRequestDTO request, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found"));
         Variant variant = variantRepository.findById(request.getVariantId())
-                .orElseThrow(() -> new IllegalArgumentException("Variant not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Variant not found"));
 
         UserDevice device = new UserDevice();
         device.setUser(user);
@@ -52,7 +51,7 @@ public class UserDeviceService {
     @Transactional(readOnly = true)
     public Page<UserDeviceResponseDTO> getUserDevices(String userEmail, Pageable pageable) {
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found"));
         return userDeviceRepository.findByUserId(user.getId(), pageable)
                 .map(this::mapToResponseDTO);
     }
@@ -60,11 +59,11 @@ public class UserDeviceService {
     @Transactional(readOnly = true)
     public UserDeviceResponseDTO getDevice(Long id, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found"));
         UserDevice device = userDeviceRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Device not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found"));
         if (!device.getUser().getId().equals(user.getId())) {
-            throw new IllegalArgumentException("Access denied");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access denied: Device does not belong to you");
         }
         return mapToResponseDTO(device);
     }
@@ -72,14 +71,12 @@ public class UserDeviceService {
     @Transactional
     public void deleteDevice(Long id, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found"));
         UserDevice device = userDeviceRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Device not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found"));
         if (!device.getUser().getId().equals(user.getId())) {
-            throw new IllegalArgumentException("Access denied");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access denied: Device does not belong to you");
         }
-        
-        // Clean up cascading references if needed, or let hibernate/flyway constraints handle it
         userDeviceRepository.delete(device);
     }
 
@@ -87,11 +84,11 @@ public class UserDeviceService {
         UserDeviceResponseDTO dto = new UserDeviceResponseDTO();
         dto.setId(device.getId());
         dto.setUserId(device.getUser().getId());
-        
+
         Variant v = device.getVariant();
-        VariantDTO variantDTO = new VariantDTO(v.getId(), v.getStorage(), v.getRam(), v.getColor(), v.getBasePrice(), v.getModel().getId());
+        VariantDTO variantDTO = new VariantDTO(v.getId(), v.getStorage(), v.getRam(), v.getColor(), v.getBasePrice(), v.getModel().getId(), v.getModel().getName());
         dto.setVariant(variantDTO);
-        
+
         dto.setPurchaseDate(device.getPurchaseDate());
         dto.setPurchasePrice(device.getPurchasePrice());
         dto.setStorageOverride(device.getStorageOverride());

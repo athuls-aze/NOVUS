@@ -39,8 +39,9 @@ public class ValuationEngine {
         double adjustedDepreciation = ageDepreciationRate + conditionPenalty;
 
         // 6. estimatedValue = basePrice * (1 - adjustedDepreciation/100.0) * trendMultiplier
+        // Clamp to 0 so extremely old/poor-condition devices don't produce negative values
         double basePriceDouble = basePrice.doubleValue();
-        double estimatedValueDouble = basePriceDouble * (1 - adjustedDepreciation / 100.0) * trendMultiplier;
+        double estimatedValueDouble = basePriceDouble * Math.max(0.0, (1 - adjustedDepreciation / 100.0)) * trendMultiplier;
         BigDecimal estimatedValue = BigDecimal.valueOf(estimatedValueDouble).setScale(2, RoundingMode.HALF_UP);
 
         // 7. lowerRange = estimatedValue * 0.90

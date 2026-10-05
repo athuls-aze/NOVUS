@@ -30,12 +30,11 @@ public class ConditionScoringService {
     }
 
     private int getGradeScore(ConditionGrade grade) {
-        switch (grade) {
-            case EXCELLENT: return 100;
-            case GOOD: return 75;
-            case FAIR: return 45;
-            case POOR: return 15;
-            default: return 0;
-        }
+        return switch (grade) {
+            case EXCELLENT -> 100;
+            case GOOD -> 75;
+            case FAIR -> 45;
+            case POOR -> 15;
+        };
     }
 }

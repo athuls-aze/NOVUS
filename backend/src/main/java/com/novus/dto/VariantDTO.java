@@ -9,14 +9,16 @@ public class VariantDTO {
     private String color;
     private BigDecimal basePrice;
     private Long modelId;
+    private String modelName;
 
-    public VariantDTO(Long id, String storage, String ram, String color, BigDecimal basePrice, Long modelId) {
+    public VariantDTO(Long id, String storage, String ram, String color, BigDecimal basePrice, Long modelId, String modelName) {
         this.id = id;
         this.storage = storage;
         this.ram = ram;
         this.color = color;
         this.basePrice = basePrice;
         this.modelId = modelId;
+        this.modelName = modelName;
     }
 
     public Long getId() { return id; }
@@ -31,4 +33,6 @@ public class VariantDTO {
     public void setBasePrice(BigDecimal basePrice) { this.basePrice = basePrice; }
     public Long getModelId() { return modelId; }
     public void setModelId(Long modelId) { this.modelId = modelId; }
+    public String getModelName() { return modelName; }
+    public void setModelName(String modelName) { this.modelName = modelName; }
 }

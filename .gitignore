@@ -36,3 +36,9 @@ yarn-error.log*
 # Database
 *.sqlite
 *.db
+
+# Build tools & local binaries
+apache-maven-*/
+backend/apache-maven-*/
+progress.txt
+

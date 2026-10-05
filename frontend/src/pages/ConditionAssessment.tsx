@@ -58,13 +58,13 @@ export default function ConditionAssessment() {
   const grades = ['EXCELLENT', 'GOOD', 'FAIR', 'POOR'];
 
   return (
-    <div className="max-w-2xl mx-auto bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-xl">
+    <div className="max-w-2xl mx-auto bg-apple-surface shadow-apple-card border border-apple-border p-8 rounded-xl">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-3xl font-bold text-white">Condition Assessment</h2>
-          <p className="text-gray-400 text-sm mt-1">Diagnose your device condition to determine fair resale value.</p>
+          <h2 className="text-3xl font-bold text-apple-primary">Condition Assessment</h2>
+          <p className="text-apple-secondary text-sm mt-1">Diagnose your device condition to determine fair resale value.</p>
         </div>
-        <Link to={`/devices/${id}`} className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1.5 rounded-lg transition">
+        <Link to={`/devices/${id}`} className="text-xs bg-apple-surface hover:bg-apple-border text-apple-secondary px-3 py-1.5 rounded-lg transition">
           ✕ Cancel
         </Link>
       </div>
@@ -78,8 +78,8 @@ export default function ConditionAssessment() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <div className="flex justify-between items-center mb-1">
-            <label className="block text-sm text-gray-400 font-medium">Battery Maximum Capacity (%)</label>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-gray-700 text-indigo-300">{formData.batteryHealth}%</span>
+            <label className="block text-sm text-apple-secondary font-medium">Battery Maximum Capacity (%)</label>
+            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-apple-surface text-indigo-300">{formData.batteryHealth}%</span>
           </div>
           <input 
             type="number" 
@@ -87,7 +87,7 @@ export default function ConditionAssessment() {
             max="100" 
             value={formData.batteryHealth}
             onChange={e => setFormData({...formData, batteryHealth: Math.min(100, Math.max(0, parseInt(e.target.value) || 0))})}
-            className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" 
+            className="w-full bg-apple-bg border border-apple-border rounded-lg p-3 text-apple-primary focus:outline-none focus:border-indigo-500 transition-colors" 
             required
           />
           <p className="text-xs text-gray-500 mt-1">Check in iPhone Settings &gt; Battery &gt; Battery Health &amp; Charging.</p>
@@ -95,13 +95,13 @@ export default function ConditionAssessment() {
         
         {['displayCondition', 'bodyCondition', 'cameraCondition', 'chargingCondition'].map((field) => (
           <div key={field}>
-            <label className="block text-sm text-gray-400 mb-1 capitalize font-medium">
+            <label className="block text-sm text-apple-secondary mb-1 capitalize font-medium">
               {field.replace('Condition', '')} Condition
             </label>
             <select 
               value={(formData as any)[field]} 
               onChange={e => setFormData({...formData, [field]: e.target.value})}
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-apple-bg border border-apple-border rounded-lg p-3 text-apple-primary focus:outline-none focus:border-indigo-500 transition-colors"
             >
               {grades.map(g => <option key={g} value={g}>{g}</option>)}
             </select>
@@ -126,3 +126,4 @@ export default function ConditionAssessment() {
     </div>
   );
 }
+

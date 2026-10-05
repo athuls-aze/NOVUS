@@ -114,6 +114,7 @@ BEGIN
         (m_id, '256GB', '4GB', 'Pink', 74900.00);
 
     -- iPhone 13 (more variants)
+    INSERT IGNORE INTO models (series_id, name, release_date) VALUES (s_id, 'iPhone 13', '2021-09-24');
     SELECT id INTO m_id FROM models WHERE series_id = s_id AND name = 'iPhone 13';
     INSERT IGNORE INTO variants (model_id, storage, ram, color, base_price) VALUES
         (m_id, '128GB', '4GB', 'Blue', 69900.00),

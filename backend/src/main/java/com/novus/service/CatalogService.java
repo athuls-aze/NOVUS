@@ -51,7 +51,7 @@ public class CatalogService {
 
     public List<VariantDTO> getVariantsByModel(Long modelId) {
         return variantRepository.findByModelId(modelId).stream()
-                .map(v -> new VariantDTO(v.getId(), v.getStorage(), v.getRam(), v.getColor(), v.getBasePrice(), v.getModel().getId()))
+                .map(v -> new VariantDTO(v.getId(), v.getStorage(), v.getRam(), v.getColor(), v.getBasePrice(), v.getModel().getId(), v.getModel().getName()))
                 .collect(Collectors.toList());
     }
 }
